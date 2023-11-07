@@ -2,12 +2,12 @@ import React, {useState, useEffect} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 import RecipeForm from "./RecipeForm";
 import RecipeBookModal from "./RecipeBookModal";
-import {getRecipeFromApi, updateRecipeInApi, deleteRecipeInApi} from "../apiConnectors/recipeApiConnector";
+import {getRecipeFromApi} from "../apiConnectors/recipeApiConnector";
 
 
-const UpdateRecipePage = () => {
+const ViewRecipePage = () => {
 
-    console.log('loading UpdatePage');
+    console.log('loading ViewPage');
     const navigate = useNavigate();
     const [recipe, setRecipe] = useState({});
     const [isLoading, setIsLoading] = useState(true);
@@ -17,31 +17,15 @@ const UpdateRecipePage = () => {
 
 
     useEffect(() => {
-        console.log('UpdatePage useEffect triggered');
+        console.log('ViewPage useEffect triggered');
         getRecipeFromApi(recipePid)
             .then(recipe => setRecipe(recipe))
             .catch(err => setErrorMsg(err.message))
             .finally(() => setIsLoading(false))
     }, [recipePid]);
 
-    const onSubmit = (recipeUpdates) => {
-        updateRecipeInApi(recipeUpdates)
-            .then(recipe => {
-                setRecipe(recipe)
-                setStatusMsg(`${recipe.name} recipe was updated successfully`)
-            })
-            .catch(err => {
-                setErrorMsg(err.message)
-            })
-    };
-
-    const onRemove = () => {
-        deleteRecipeInApi(recipePid)
-            .then(recipe => {
-                setStatusMsg(`${recipe.name} was deleted successfully`)
-                //navigate('/dashboard');
-            })
-            .catch(err => setErrorMsg(err.message))
+    const onEdit = () => {
+        navigate(`/update/${recipePid}`);
     };
 
     const onCloseErrorModal = () => {
@@ -53,13 +37,15 @@ const UpdateRecipePage = () => {
         navigate('/dashboard');
     };
 
+    const title = recipe.name ? recipe.name.toUpperCase() : 'Recipe Page';
+
     return (
         <div>
             <div className='page-header'>
                 <div className='content-container'>
-                    <h1 className='page-header__title'> Recipe Form </h1>
+                    <h1 className='page-header__title'> {title} </h1>
                     <div className='page-header__actions'>
-                        <button className='button button--secondary' onClick={onRemove}>Remove recipe</button>
+                        <button className='button' onClick={onEdit}>Edit recipe</button>
                     </div>
                 </div>
             </div>
@@ -73,8 +59,8 @@ const UpdateRecipePage = () => {
                         {recipe.hasOwnProperty('recipePid') &&
                             <RecipeForm
                                 recipe={recipe}
-                                onSubmit={onSubmit}
-                                readOnly={false}
+                                onSubmit={null}
+                                readOnly={true}
                             />}
                     </div>
                 }
@@ -96,4 +82,4 @@ const UpdateRecipePage = () => {
 };
 
 
-export {UpdateRecipePage as default};
+export {ViewRecipePage as default};

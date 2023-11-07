@@ -1,0 +1,39 @@
+.header {
+  background: $dark-blue;
+  margin: 0;
+}
+
+.header__content {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: $s-spacing 0;
+}
+
+.header__title {
+  color: $off-white;
+  text-decoration: none;
+  h1 {
+    margin: 0;
+  }
+}
+
+.header__subtitle {
+  color: $off-white;
+  font-size: $m-font;
+  font-weight: 500;
+  margin: 0;
+}
+
+.header__navLink {
+  color: $off-white;
+  font-size: $m-font;
+  font-weight: 500;
+  margin: 0;
+}
+
+@media (min-width: $desktop-breakpoint) {
+  //.header {
+  //  margin-bottom: $xl-spacing;
+  //}
+}

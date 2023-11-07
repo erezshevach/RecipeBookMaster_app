@@ -68,26 +68,35 @@ const RecipeProcessFieldSet = () => {
     };
 
     return (
-        <RecipeProcessFormContext.Provider value={{components, componentsDispatch, currentEditedComponent, setCurrentEditedComponent}}>
-            {validationErr && <p>{validationErr}</p>}
-            <fieldset id='process'>
-                <input
-                    id='sequence'
-                    type='text'
-                    placeholder='Sequence'
-                    value={sequence}
-                    onChange={onSequenceChange}
-                />
-                <textarea
-                    id='description'
-                    rows='2'
-                    cols='50'
-                    placeholder='Description'
-                    value={description}
-                    onChange={(e) => (setDescription(e.target.value))}
-                />
+        <RecipeProcessFormContext.Provider
+            value={{components, componentsDispatch, currentEditedComponent, setCurrentEditedComponent}}>
+            <fieldset id='process' className='form'>
+                <div className='form__header'>
+                    <h2 className='form__title'>
+                        Add a process to the recipe:
+                    </h2>
+                </div>
+                {validationErr && <p className='form__error'>{validationErr}</p>}
+                <div className='fieldset'>
+                    <input
+                        id='sequence'
+                        type='text'
+                        className='text-input'
+                        placeholder='Sequence'
+                        value={sequence}
+                        onChange={onSequenceChange}
+                    />
+                    <textarea
+                        id='description'
+                        className='textarea'
+                        rows='2'
+                        cols='50'
+                        placeholder='Description'
+                        value={description}
+                        onChange={(e) => (setDescription(e.target.value))}
+                    />
+                </div>
                 <div>
-                    <RecipeComponentFieldSet/>
                     <label htmlFor='components'>
                         Process' components:
                     </label>
@@ -97,11 +106,14 @@ const RecipeProcessFieldSet = () => {
                         components={components}
                     />
                 </div>
-                {isUpdate ?
-                    (<button type='button' onClick={onUpdateProcess}>Update recipe process</button>) :
-                    (<button type='button' onClick={onAddProcess}>Add recipe process</button>)
-                }
-                <button type='button' onClick={clearForm}>Clear</button>
+                <div className='buttons-group'>
+                    {isUpdate ?
+                        (<button type='button' className='button' onClick={onUpdateProcess}>Update process</button>) :
+                        (<button type='button' className='button' onClick={onAddProcess}>Add process</button>)
+                    }
+                    <button type='button' className='button button--secondary' onClick={clearForm}>Clear</button>
+                </div>
+                <RecipeComponentFieldSet/>
             </fieldset>
         < /RecipeProcessFormContext.Provider>
     );

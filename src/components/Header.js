@@ -1,12 +1,17 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 
 const Header = () => (
-    <header>
-        <h1>Recipe Book Master App</h1>
-        <NavLink to="/dashboard">Recipes Dashboard</NavLink>
-        <NavLink to="/create">Create Recipe</NavLink>
-        <NavLink to="/help">Help</NavLink>
+    <header className='header'>
+        <div className='content-container'>
+            <div className='header__content'>
+            <Link className='header__title' to="/dashboard">
+                <h1>Recipe Book Master</h1>
+            </Link>
+
+            <NavLink className='header__navLink' to="/help">Help</NavLink>
+        </div>
+        </div>
     </header>
 )
 

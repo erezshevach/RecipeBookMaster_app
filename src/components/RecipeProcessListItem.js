@@ -3,8 +3,9 @@ import {removeRecipeProcess} from "../actions/recipeProcesses";
 import {RecipeFormContext} from "../context/context";
 import RecipeComponentsList from "./RecipeComponentsList";
 
+
 const RecipeProcessListItem = (props) => {
-    const {processesDispatch, setCurrentEditedProcess} = useContext(RecipeFormContext)
+    const {readOnly, processesDispatch, setCurrentEditedProcess} = useContext(RecipeFormContext)
     const {processPid, sequence, description, components} = props.process;
 
     const onRemove = () => {
@@ -22,8 +23,11 @@ const RecipeProcessListItem = (props) => {
                 isForm={false}
                 components={components}
             />
-            <button type='button' onClick={onRemove}>Remove process</button>
-            <button type='button' onClick={onEdit}>Edit process</button>
+
+            {!readOnly &&
+                <button className='button button--secondary' type='button' onClick={onRemove}>Remove process</button>}
+            {!readOnly &&
+                <button type='button' onClick={onEdit}>Edit process</button>}
         </>
     );
 };

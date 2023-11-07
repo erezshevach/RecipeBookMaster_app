@@ -1,20 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 62.5%
 }
 
 body {
   margin: 0;
+  color: $dark-grey;
+  font-size: $m-spacing;
+  line-height: 1.6;
   font-family: -apple-system, Helvetica, Arial, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.6rem;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
   font-size: 1.6rem;
 
 }
@@ -27,6 +33,6 @@ button:disabled {
   cursor: default;
 }
 
-.active {
-  font-weight: bold;
-}
+//.active {
+//  font-weight: bold;
+//}

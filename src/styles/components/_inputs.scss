@@ -1,0 +1,24 @@
+.text-input {
+  border: 1px solid #cacccd;
+  height: 50px;
+  font-size: $m-font;
+  font-weight: 300;
+  padding: $s-spacing;
+}
+
+.select {
+  @extend .text-input;
+}
+
+.checkbox {
+  @extend .text-input;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;}
+
+.textarea {
+  @extend .text-input;
+  height: 10rem;
+}

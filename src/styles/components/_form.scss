@@ -1,0 +1,39 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  >* {
+    margin-bottom: $m-spacing;
+  }
+}
+
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $m-spacing;
+  >* {
+    margin: 0 0 $m-spacing 0;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+    margin-bottom: $l-spacing;
+    >* {
+      margin: 0 $s-spacing 0 0;
+    }
+  }
+}
+
+.form__error {
+  color: red;
+  margin: 0 0 $m-spacing 0;
+  font-style: italic;
+}
+.form__header {
+  background: $off-white;
+  margin-bottom: $m-spacing;
+  padding: $m-spacing;
+}
+
+.form__title {
+  font-weight: 300;
+  margin: 0;
+}

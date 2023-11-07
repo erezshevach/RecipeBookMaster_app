@@ -1,4 +1,5 @@
 import React, {useEffect, useReducer, useState} from 'react';
+import {Link} from "react-router-dom";
 import RecipesListFilters from "./RecipesListFilters";
 import RecipesList from "./RecipesList";
 import filtersReducer, {filtersReducerDefaultState} from "../reducers/filters";
@@ -55,8 +56,18 @@ const RecipesDashboardPage = () => {
             }
             {!isLoading &&
                 <div>
+                    <div className='page-header'>
+                        <div className='content-container'>
+                                <h1 className='page-header__title'> Recipes Dashboard</h1>
+                            <div className='page-header__actions'>
+                                <Link className='button' to="/create">Create Recipe</Link>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='content-container'>
                         <RecipesListFilters filters={filters} filtersDispatch={filtersDispatch}/>
                         <RecipesList recipes={recipes} filters={filters}/>
+                    </div>
                 </div>
             }
         </div>

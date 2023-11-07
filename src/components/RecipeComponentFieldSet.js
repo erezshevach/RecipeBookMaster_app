@@ -65,18 +65,25 @@ const RecipeComponentFieldSet = () => {
 
 //            console.log(processComponents);
     return (
-        < div>
-            {validationErr && <p>{validationErr}</p>}
-            <fieldset id='component'>
+        <fieldset className='form'>
+            <div className='form__header'>
+                <h2 className='form__title'>
+                    Add a component to the process:
+                </h2>
+            </div>
+            {validationErr && <p className='form__error'>{validationErr}</p>}
+            <div id='component' className='fieldset'>
                 <input
                     id='quantity'
                     type='text'
+                    className='text-input'
                     placeholder='Quantity'
                     value={quantity}
                     onChange={onQuantityChange}
                 />
                 <select name="uom"
                         id="uom"
+                        className='select'
                         value={uom}
                         onChange={(e) => (setUom(e.target.value))}
                 >
@@ -87,6 +94,7 @@ const RecipeComponentFieldSet = () => {
                 <input
                     id='ingredient'
                     type='text'
+                    className='text-input'
                     placeholder='Ingredient'
                     value={ingredient}
                     onChange={(e) => (setIngredient(e.target.value))}
@@ -94,17 +102,21 @@ const RecipeComponentFieldSet = () => {
                 <input
                     id='state'
                     type='text'
+                    className='text-input'
                     placeholder='Ingredient state'
                     value={state}
                     onChange={(e) => (setState(e.target.value))}
                 />
+
+            </div>
+            <div className='buttons-group'>
                 {isUpdate ?
-                    (<button type='button' onClick={onUpdateComponent}>Update recipe component</button>) :
-                    (<button type='button' onClick={onAddComponent}>Add recipe component</button>)
+                    (<button type='button' className='button' onClick={onUpdateComponent}>Update component</button>) :
+                    (<button type='button' className='button' onClick={onAddComponent}>Add component</button>)
                 }
-                <button type='button' onClick={clearForm}>Clear</button>
-            </fieldset>
-        < /div>
+                <button type='button' className='button button--secondary' onClick={clearForm}>Clear</button>
+            </div>
+        < /fieldset>
     );
 }
 

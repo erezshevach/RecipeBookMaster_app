@@ -7,12 +7,13 @@ const RecipesListItem = (props) => {
 
     return (
         <div>
-            <Link to={`/update/${recipePid}`}>
-                <h3>
+            <Link className='list-item' to={`/view/${recipePid}`}>
+                <h3 className='list-item__title'>
                     {name}
                 </h3>
-            </Link>
             <p>Gluten free: {(!containsGluten).toString()}, Dairy free: {!containsDairy}, Nuts free: {!containsNuts}</p>
+            </Link>
+
 
         </div>
     );

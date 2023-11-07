@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import RecipeForm from './RecipeForm';
+import RecipeBookModal from "./RecipeBookModal";
 import {createRecipeInApi} from "../apiConnectors/recipeApiConnector";
 
 
@@ -8,24 +9,54 @@ const CreateRecipePage = () => {
 
     console.log('loading CreatePage');
     const navigate = useNavigate()
-    const [submitError, setSubmitError] = useState('')
+    const [errorMsg, setErrorMsg] = useState('')
+    const [statusMsg, setStatusMsg] = useState('')
 
     const onSubmit = (newRecipe) => {
         createRecipeInApi(newRecipe)
-            .then(res => {
-                console.log(`${res.name} was created successfully`)
-                navigate('/dashboard')
+            .then(recipe => {
+                setStatusMsg(`${recipe.name} recipe was created successfully`)
+                //navigate('/dashboard')
             })
-            .catch(err => { setSubmitError(err.message) });
+            .catch(err => { setErrorMsg(err.message) });
     }
+
+    const onCloseErrorModal = () => {
+        setErrorMsg('');
+    };
+
+    const onCloseStatusModal = () => {
+        setStatusMsg('');
+        navigate('/dashboard');
+    };
 
     return (
         <div>
-            {submitError && <p>{submitError}</p>}
-            <RecipeForm
-                recipe={{}}
-                onSubmit={onSubmit}
-            />
+            <div className='page-header'>
+                <div className='content-container'>
+                    <h1 className='page-header__title'> Create New Recipe</h1>
+                </div>
+            </div>
+            <div className='content-container'>
+                {statusMsg && <p>{statusMsg}</p>}
+                <RecipeForm
+                    recipe={{}}
+                    onSubmit={onSubmit}
+                    readOnly={false}
+                />
+                <RecipeBookModal
+                    id='errorMsgModal'
+                    title='Error'
+                    message={errorMsg}
+                    onCloseModal={onCloseErrorModal}
+                />
+                <RecipeBookModal
+                    id='statusMsgModal'
+                    title=''
+                    message={statusMsg}
+                    onCloseModal={onCloseStatusModal}
+                />
+            </div>
         </div>
     );
 }

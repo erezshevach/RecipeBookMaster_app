@@ -1,0 +1,64 @@
+// Big Button
+.big-button {
+  background: $blue;
+  border: none;
+  border-bottom: .6rem solid darken($blue, 10%);
+  color: white;
+  font-weight: bold;
+  font-size: $l-spacing;
+  margin-bottom: $m-spacing;
+  padding: 2.4rem;
+  width: 100%;
+}
+
+.big-button:disabled {
+  opacity: .5;
+}
+
+// Button
+.button {
+  background: $blue;
+  border: none;
+  color: white;
+  font-weight: 300;
+  padding: $s-spacing;
+  display: inline-block;
+  font-size: $l-font;
+  line-height: 1;
+  text-decoration: none;
+}
+
+//.button {
+  //border-bottom: .3rem solid darken($blue, 10%);
+//  display: inline-flex;
+//  padding: 15px 30px;
+//  justify-content: center;
+//  background-color: pink;
+//  border-radius: 25px;
+//}
+
+.button--link {
+  background: none;
+  //border: none;
+  //color: $off-white;
+  //padding: 0;
+}
+
+.button--secondary {
+  background: #888;
+}
+
+.buttons-group {
+  display: flex;
+  justify-content: flex-end;
+  >* {
+    padding: $xs-spacing;
+    margin-right: $s-spacing;
+  }
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .big-button {
+    margin-bottom: $xl-spacing;
+  }
+}
