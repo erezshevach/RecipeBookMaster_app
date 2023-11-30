@@ -21,5 +21,19 @@ const updateRecipeProcess = (processPid, updatedProcess) => ({
     updatedProcess
 });
 
+const createComponent = (processPid, newComponent) => ({
+    type: 'CREATE_COMPONENT',
+    processPid,
+    newComponent
+});
 
-export {createRecipeProcess, removeRecipeProcess, updateRecipeProcess};
+const updateComponent = (componentPid, field, updatedValue) => ({
+    type: 'UPDATE_COMPONENT',
+    componentPid,
+    field,
+    updatedValue
+});
+
+
+
+export {createRecipeProcess, removeRecipeProcess, updateRecipeProcess, createComponent, updateComponent};

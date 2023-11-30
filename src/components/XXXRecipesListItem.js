@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 
-const RecipesListItem = (props) => {
+const XXXRecipesListItem = (props) => {
     const {recipePid, name, containsGluten, containsDairy, containsNuts} = props.recipe;
 
     return (
@@ -20,4 +20,4 @@ const RecipesListItem = (props) => {
 };
 
 
-export {RecipesListItem as default};
+export {XXXRecipesListItem as default};

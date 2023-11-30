@@ -2,7 +2,7 @@ import React, {useState, useContext, useEffect, useReducer} from 'react';
 import {RecipeFormContext, RecipeProcessFormContext} from "../context/context";
 import {createRecipeProcess, updateRecipeProcess} from "../actions/recipeProcesses";
 import {resetRecipeComponentsState, loadRecipeComponentsState} from "../actions/recipeComponents";
-import recipeComponentReducer, {recipeComponentsReducerDefaultState} from "../reducers/recipeComponents";
+import recipeComponentReducer, {recipeComponentsReducerDefaultState} from "../reducers/XXXrecipeComponents";
 import RecipeComponentsList from "./RecipeComponentsList";
 import RecipeComponentFieldSet from "./RecipeComponentFieldSet";
 

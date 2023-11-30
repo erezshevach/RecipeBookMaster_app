@@ -16,19 +16,24 @@ const RecipeProcessListItem = (props) => {
     };
 
     return (
-        <>
-            <p>{sequence}: {description} </p>
+        <div style={{
+            width: '100%',
+            display: 'flex',
+            direction: 'row'
+        }}>
+            <p style={{width: '50%'}}>{sequence}: {description} </p>
             <RecipeComponentsList
                 id='components'
                 isForm={false}
                 components={components}
+                style={{width: '50%'}}
             />
 
             {!readOnly &&
                 <button className='button button--secondary' type='button' onClick={onRemove}>Remove process</button>}
             {!readOnly &&
                 <button type='button' onClick={onEdit}>Edit process</button>}
-        </>
+        </div>
     );
 };
 

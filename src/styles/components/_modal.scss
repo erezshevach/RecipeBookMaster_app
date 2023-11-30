@@ -1,4 +1,4 @@
-.ReactModalPortal>div {
+.ReactModalPortal > div {
   opacity: 0;
 }
 
@@ -19,11 +19,22 @@
 
 .modal {
   background: $off-white;
-  color: white;
-  max-width: 30rem;
-  outline: none;
+  max-width: 60rem;
+  outline: 1px solid $dark-grey;
   padding: $l-spacing;
   text-align: center;
+}
+
+.modal--validation {
+  outline: 1px solid $blue;
+}
+
+.modal--error {
+  outline: 1px solid darkred;
+}
+
+.modal--status {
+  outline: 1px solid green;
 }
 
 .modal__title {
@@ -34,5 +45,5 @@
   font-size: 2rem;
   font-weight: 300;
   margin: 0 0 $l-spacing 0;
-  word-break: break-all;
+  word-break: break-word;
 }

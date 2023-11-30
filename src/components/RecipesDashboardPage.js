@@ -4,6 +4,7 @@ import RecipesListFilters from "./RecipesListFilters";
 import RecipesList from "./RecipesList";
 import filtersReducer, {filtersReducerDefaultState} from "../reducers/filters";
 import {getAllRecipesFromApi} from "../apiConnectors/recipeApiConnector";
+import LoadingPage from "./LoadingPage";
 
 
 
@@ -49,7 +50,7 @@ const RecipesDashboardPage = () => {
     return (
         <div>
             {isLoading &&
-                <div>Loading...</div>
+                <LoadingPage />
             }
             {loadingError &&
                 <div>{loadingError}</div>

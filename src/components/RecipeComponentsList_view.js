@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
 import RecipeComponentListItem from './RecipeComponentListItem';
 import { v4 as uuid } from 'uuid';
 import {ThemeProvider} from "@mui/material/styles";
@@ -9,17 +9,20 @@ import {
     DataGrid,
     GridToolbarContainer,
     GridActionsCellItem,
-    GridCellEditStopReasons ,
+    GridRowEditStopReasons,
 } from '@mui/x-data-grid';
+// import {
+//     randomCreatedDate,
+//     randomTraderName,
+//     randomId,
+//     randomArrayItem,
+// } from '@mui/x-data-grid-generator';
 
 import {recipeDataGridTheme} from "../styles/themes/recipeDataGridTheme";
-import {RecipeFormContext} from "../context/context";
-import {createComponent, updateComponent} from "../actions/recipeProcesses";
 
 
-const RecipeComponentsList = (props) => {
+const RecipeComponentsList_view = (props) => {
     const {components, isForm} = props
-    const {processes, processesDispatch} = useContext(RecipeFormContext);
 
     function EditToolbar(props) {
         const { setRows, setRowModesModel } = props;
@@ -45,47 +48,27 @@ const RecipeComponentsList = (props) => {
         {
             field: 'quantity',
             headerName: 'Quantity',
+            valueGetter: (params) => `${params.row.quantity} ${params.row.uom.toLowerCase()}` ,
             flex: 1,
-            editable: true,
         },
         {
             field: 'uom',
             headerName: 'Unit',
-            valueGetter: (params) => params.row.uom.toLowerCase() ,
+            valueGetter: (params) => `${params.row.quantity} ${params.row.uom.toLowerCase()}` ,
             flex: 1,
-            editable: true,
-            type: 'singleSelect',
-            valueOptions: ['g', 'kg', 'unit'],
         },
         {
             field: 'ingredient',
             headerName: 'Ingredient',
+            valueGetter: (params) => `${params.row.ingredient} ${params.row.state ? `(${params.row.state})` : ''}`,
             flex: 3,
-            editable: true,
-        },
-        {
-            field: 'state',
-            headerName: 'State',
-            flex: 3,
-            editable: true,
         },
     ];
 
-    const onCellEditStop = (params, event) => {
-        //preventing ending edit by clicking outside cell
-        // if (params.reason === GridCellEditStopReasons.cellFocusOut) {
-        //     event.defaultMuiPrevented = true;
-        // }
-        if (event.target) {
-            processesDispatch(updateComponent(params.row.componentPid, params.field, event.target.value))
-        }
-    }
-
-    console.log(components);
     return (
         <div style={{width: '100%'}}>
 
-                {//components.length > 1 &&
+                {components.length > 1 &&
                     <ThemeProvider theme={recipeDataGridTheme}>
                     <DataGrid
                         //sx={{maxWidth: '50%'}}
@@ -95,8 +78,9 @@ const RecipeComponentsList = (props) => {
                         getRowId={(row) => row.componentPid}
                         hideFooter={true}
                         columnHeaderHeight={0}
-                        slots={{toolbar: EditToolbar}}
-                        onCellEditStop={onCellEditStop}
+                        slots={isForm ? {
+                            toolbar: EditToolbar,
+                        } : {}}
                     />
                 </ThemeProvider>}
 
@@ -119,4 +103,4 @@ const RecipeComponentsList = (props) => {
 }
 
 
-export default RecipeComponentsList;
+export default RecipeComponentsList_view;

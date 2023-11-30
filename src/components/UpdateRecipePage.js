@@ -80,13 +80,14 @@ const UpdateRecipePage = () => {
                 }
                 <RecipeBookModal
                     id='errorMsgModal'
+                    modalType='error'
                     title='Error'
                     message={errorMsg}
                     onCloseModal={onCloseErrorModal}
                 />
                 <RecipeBookModal
                     id='statusMsgModal'
-                    title=''
+                    modalType='status'
                     message={statusMsg}
                     onCloseModal={onCloseStatusModal}
                 />

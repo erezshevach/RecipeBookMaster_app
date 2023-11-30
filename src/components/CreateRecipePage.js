@@ -46,15 +46,15 @@ const CreateRecipePage = () => {
                 />
                 <RecipeBookModal
                     id='errorMsgModal'
-                    title='Error'
                     message={errorMsg}
                     onCloseModal={onCloseErrorModal}
+                    modalType='error'
                 />
                 <RecipeBookModal
                     id='statusMsgModal'
-                    title=''
                     message={statusMsg}
                     onCloseModal={onCloseStatusModal}
+                    modalType='status'
                 />
             </div>
         </div>

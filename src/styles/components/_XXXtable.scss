@@ -1,35 +1,28 @@
-.list-header {
+.table-header {
   background: $off-white;
   border: 1px solid darken($off-white, 7%);
-  color: $grey;
-  display: flex;
-  justify-content: space-between;
   padding: $s-spacing $m-spacing;
 }
 
-.list-header-group {
-  display: flex;
-  flex-direction: row;
-  >* {
-    margin-left: $m-spacing;
-  }
+.table-header__title {
+  color: $grey;
+  font-size: $l-font;
 }
 
-.list-body {
+.table-body {
   margin-bottom: $m-spacing;
   @media (min-width: $desktop-breakpoint) {
     margin-bottom: $l-spacing;
   }
 }
 
-.list-item {
+.table-item {
   border: 1px solid darken($off-white, 7%);
   border-top: none;
-  color: $dark-grey;
+
   display: flex;
   flex-direction: column;
   padding: $s-spacing;
-  text-decoration: none;
   transition: background .3s ease;
   &:hover {
     background: $off-white;
@@ -41,8 +34,12 @@
     padding: $m-spacing;
   }
 }
+ .table-cell {
+   color: $dark-grey;
+   text-decoration: none;
+ }
 
-.list-item--message {
+.table-item--message {
   align-items: center;
   color: $grey;
   justify-content: center;
@@ -52,17 +49,13 @@
   }
 }
 
-.list-item__title {
+.table-item__title {
   margin: 0;
   word-break: break-all;
 }
 
-.list-item__sub-title {
-  color: $grey;
-  font-size: $s-font;
-}
 
-.list-item__data {
+.table-item__data {
   margin: $s-spacing 0 0 0;
   @media (min-width: $desktop-breakpoint) {
     margin: 0;

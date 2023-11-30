@@ -1,6 +1,6 @@
 import React, {useReducer, useState} from 'react';
 import {RecipeFormContext} from "../context/context";
-import recipeProcessesReducer from '../reducers/recipeProcesses';
+import recipeProcessesReducer from '../reducers/recipeProcessesReducer';
 import RecipeProcessesList from "./RecipeProcessesList";
 import RecipeProcessFieldSet from "./RecipeProcessFieldSet";
 import RecipeBookModal from "./RecipeBookModal";
@@ -17,15 +17,14 @@ const RecipeForm = (props) => {
     const [containsNuts, setContainsNuts] = useState(isUpdate ? props.recipe.containsNuts : false)
     const [containsPeanuts, setContainsPeanuts] = useState(isUpdate ? props.recipe.containsPeanuts : false)
     const [vegan, setVegan] = useState(isUpdate ? props.recipe.vegan : false)
-    const [processes, processesDispatch] = useReducer(recipeProcessesReducer, isUpdate ? props.recipe.processes : [])
+    const [processes, processesDispatch] = useReducer(recipeProcessesReducer, isUpdate ? props.recipe.processes : {})
     const [validationErrorMsg, setValidationErrorMsg] = useState('')
     const [currentEditedProcess, setCurrentEditedProcess] = useState({})
-    console.log(readOnly);
 
     const validateForm = () => {
         let err = ''
         if (!name) {
-            err += 'Please provide recipe\'s name. ';
+            err += 'A recipe must include name. ';
         }
         if (processes.length === 0) {
             err += 'A recipe must include at least one process. ';
@@ -141,12 +140,8 @@ const RecipeForm = (props) => {
                         />
                     </div>
                 </div>
-                <div>
-                    <label htmlFor='processes'>
-                        Processes:
-                    </label>
-                    <RecipeProcessesList id='processes'/>
-                </div>
+
+                <RecipeProcessesList id='processes'/>
 
                 {!readOnly &&
                     <div className='buttons-group'>
@@ -162,9 +157,9 @@ const RecipeForm = (props) => {
 
             <RecipeBookModal
                 id='errorMsgModal'
-                title='Error'
                 message={validationErrorMsg}
                 onCloseModal={onCloseErrorModal}
+                modalType='validation'
             />
         </RecipeFormContext.Provider>);
 
